@@ -60,13 +60,13 @@ const createNewAddress = () => new Promise((resolve, reject) => {
   });
 });
 
-/*
+
 
 // https://testnet-faucet.mempool.co/ bu adresten 0.001 BTC bu adrese aldım
 
-// Get balance
+//Get balance
 
-const getBalance = new Promise((resolve, reject) => {
+const getBalance = () => new Promise((resolve, reject) => {
   exec(`electrum --testnet getbalance`, (err, data)=> {
     if (err) {
       reject(err);
@@ -76,11 +76,9 @@ const getBalance = new Promise((resolve, reject) => {
   });
 });
 
-getBalance().then(data => {
-  console.log(data);
-}).catch(err => console.error(err));
 
 
+/*
 // Create new wallet address
 
 const payto = (address, amount) => new Promise((resolve, reject) => {
@@ -130,7 +128,8 @@ const main = async () => {
     console.log(`yeni cüzdan oluşturuldu ${newWallet}`);
   }
 
-  
+  const balance = await getBalance();
+  console.log(`Bakiyeniz: ${balance}`); 
 }
 
 main();
